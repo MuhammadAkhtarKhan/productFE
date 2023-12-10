@@ -1,0 +1,36 @@
+<div [formGroup]="form" >
+  <div class="mb-3">
+    <label for="productName" class="form-label">Product Name</label>
+    <input type="text" class="form-control" formControlName="productName"
+     id="productName" placeholder="Product Name">
+     <ng-container *ngIf="productName?.invalid && (productName?.dirty || productName?.touched)">
+      <div class="error" *ngIf="productName?.errors?.['required']">Product Name is required.</div>
+      <div class="error" *ngIf="productName?.errors?.['maxlength']">
+        Product Name can not be greater than 50 characters.
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="mb-3">
+    <label for="productDescription" class="form-label">Product Description</label>
+    <textarea class="form-control" formControlName="productDescription"
+    id="productDescription" rows="3"></textarea>
+    <ng-container *ngIf="productDescription?.invalid && (productDescription?.dirty || productDescription?.touched)" class="error">
+
+      <div class="error" *ngIf="productDescription?.errors?.['maxlength']">
+        Product Description can not be greater than 100 characters.
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-12">
+      <button [disabled]="!form.valid" style="float: right;" class="btn btn-primary" (click)="onSave()">{{buttonName}}</button>
+    </div>
+
+  </div>
+
+</div>
+
+
